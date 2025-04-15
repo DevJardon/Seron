@@ -1,5 +1,9 @@
 @import url('general-sans.css');
 
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 body {
     margin: 0 auto;
     overflow-x: hidden;
@@ -203,6 +207,8 @@ body {
 
 
 
+
+
 @media (max-width: 768px) {
     .quote {
         display: flex;
@@ -230,7 +236,6 @@ body {
         margin-left: 20px;
         z-index: 2;
     }
-
 }
 
 @media (max-width: 829px) {
@@ -273,7 +278,106 @@ body {
         vertical-align: middle;
     }
 }
+.profile {
+    width: 100%;
+    display: flex;
+    height: 100vh;
+    font-family: GeneralSans-Light;
+}
+.left-login-container {
+    background-image: url("../Images/Login.avif");
+    width: 60%;
+    background-position: top;
+    background-size: cover;
+}
+.right-login-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit; 
+}
+form {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30px;
+} 
+.login-container {
+  position: relative;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px 0 30px 0;
+} 
+.profile-bottom-container {
+    text-align: center;
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+}
+  
+input, .btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  text-decoration: none;
+}
 
+input:hover,
+.btn:hover {
+  opacity: 1;
+}
+
+.fb {
+  background-color: #3B5998;
+  color: white;
+}
+
+.twitter {
+  background-color: #55ACEE;
+  color: white;
+}
+
+.google {
+  background-color: #dd4b39;
+  color: white;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.right-login-container p {
+    text-align: center;
+}
+
+
+@media screen and (max-width: 768px) {
+    .profile {
+      flex-direction: column;
+      height: 100vh;
+    }
+    .left-login-container {
+        display: none;
+      }
+    .right-login-container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+  }
 
 @media (max-width: 631px) {
     .start-screen-text {
@@ -303,6 +407,9 @@ body {
         text-align: center;
         overflow: hidden;
     }
-
 }
 
+
+
+
+</style>
