@@ -10,6 +10,7 @@ body {
     background-color: #fff;
     background-size: 200vh 125vh;
 }
+/* The Header Code Starts here */
 .background {
     position: relative;
     width: 100%;
@@ -76,7 +77,10 @@ body {
     text-decoration: none;
     color: black;
 }
+/* The Header Code ends here */
 
+
+/* Nav Bar Code starts here*/
 .nav-bar {
     display: flex;
     align-items: center;
@@ -89,7 +93,7 @@ body {
     padding: 1rem 2rem;
     background-color: transparent;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    z-index: 1000;
+    z-index: 998;
 }
 .nav-bar:hover {
     background-color: #fff;
@@ -98,7 +102,9 @@ body {
     background-color: #fff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-
+.nav-bar.mobile-open:hover {
+    background-color: transparent !important;
+  }
 .navbar.scrolled {
     background-color: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -108,7 +114,7 @@ body {
     color: black;
   }
 
-.nav-bar a {
+.nav-bar a, .side-navbar a {
     text-decoration: none;
     color: black;
 }
@@ -148,12 +154,92 @@ body {
 }
 .nav-bar .menu {
     visibility:hidden;
+    display: none;
 }
+
+.menu, .close-btn {
+    background-color: transparent;
+    text text-decoration: none;
+    color: black;
+    outline: none;
+    border: none;
+}
+.close-btn svg {
+    height: auto;
+    width: 35px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+}
+
+.side-navbar {
+    font-family: GeneralSans-Medium;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 60%;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 20px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+.side-navbar.open {
+    right: 0;
+}
+.side-navbar .close-btn {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+  
+.overlay.open {
+    width: 100%;
+}
+
+.side-navbar a {
+    padding: 10px;
+    text-align: center;
+    font-size: 32px;
+    font-family: GeneralSans-Light;
+}
+/* Nav Bar Code ends here */
+
+
+
+
+
+
+/* Temporary content div */
 .content {
-    height: 80vh;
+    margin: 0 auto;
+    height: auto;
     width: 100%;
     background-color: #fff;
+    box-sizing: border-box;
+    overflow: hidden; 
 }
+
+/* Second Home content starts here*/
 .cards-con {
     display: flex;
     justify-content: center;
@@ -199,85 +285,119 @@ body {
 .cards img:hover {
     opacity: 0.8; 
 }
+
+/* Footer */
 .footer {
     background-color: black;
     height: 30vh;
     
 }
+/* Second Home content ends here*/
 
 
+/* Home Cards moving CSS starts here */
 
-
-
-@media (max-width: 768px) {
-    .quote {
-        display: flex;
-        top:15%;
-        place-items: center;
-        text-align: left;
-        font-size: 50px;
-        max-width: 500px;
-    }
-    .button {
-        margin-left: 0px;
-        background-color: #fff;
-        min-width: 150px;
-        text-decoration: none;
-        outline: none;
-        border: none;
-        align-items: center;
-        font-size: 16px;
-        font-family: GeneralSans-Medium;
-    }
-    .button-con {
-        position: absolute;
-        bottom: 20px;
-        right: 40px;
-        margin-left: 20px;
-        z-index: 2;
-    }
+.direction{
+    text-align: center;
+}
+.direction button{
+    font-family: cursive;
+    font-weight: bold;
+    background-color: #black;
+    border:none;
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+}
+.direction button:hover{
+    background-color: black;
+    color: white;
+}
+.item{
+    width:300px;
+    height:auto;
+    overflow: hidden;
+    transition: 0.5s;
+    margin:10px;
+    scroll-snap-align: start;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+.item .product{
+    display: block;
+    margin:0;
+    width:100%;
+    height:auto;
+    object-fit: cover;
 }
 
-@media (max-width: 829px) {
-    .quote {
-        display: flex;
-        top:15%;
-        place-items: center;
-        text-align: left;
-        font-size: 50px;
-        max-width: 420px;
-    }
-    .cards-con {
-        display: flex;
-        flex-direction: column;
-        justify-content: center
-        align-self: center;
-        gap: 0;
-        width: 100%;
-        height: 100vh;
-        margin: 0px;
-        overflow: hidden;
-    }
-    .nav-bar-right {
-        display: none;
-    }
-    .nav-bar .menu {
-        visibility:visible;
-        margin-left: auto;
-        display: flex;
-        align-items: center;
-        gap: 40px;
-    }
-    .nav-bar-middle {
-        display: none;
-    }
-    .menu svg {
-        height: auto;
-        width: 35px;
-        display: inline-block;
-        vertical-align: middle;
-    }
+.text-product {
+    margin: 0px 10px;
+    font-family: GeneralSans-Light;
+    justify-content: center;
+    align-items: center;
 }
+
+.item {
+    text-align: center;
+}
+
+.item .nameGroup{
+    text-align: center;
+    border-bottom:none!important;
+}
+#list{
+    display: flex;
+    width:max-content;
+}
+#formList{
+    width: 100%;
+    max-width: 100%;
+    overflow: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: both;
+}
+#formList::-webkit-scrollbar{
+    display: none;
+}
+
+.home-text-top {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    margin: 20px 20px;
+    font-family: GeneralSans-Bold;
+}
+
+/* Home Cards moving CSS ends here */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Login/Register CSS Starts here */
 .profile {
     width: 100%;
     display: flex;
@@ -360,15 +480,122 @@ input[type=submit]:hover {
     text-align: center;
 }
 
+/* Login/Register CSS ends here */
 
-@media screen and (max-width: 768px) {
+
+
+/* Cart CSS ends here */
+
+
+.cart-container {
+    display: flex;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 829px) {
+    #home-cards-con {
+        height: 100vh;
+    }
+    .nav-bar:hover {
+        background-color: transparent;
+    }
+    .nav-bar.scrolled {
+        background-color: #fff !important;
+    }
+    .quote {
+        display: flex;
+        top:15%;
+        place-items: center;
+        text-align: left;
+        font-size: 50px;
+        max-width: 420px;
+    }
+    .cards-con {
+        display: flex;
+        flex-direction: column;
+        justify-content: center
+        align-self: center;
+        gap: 0;
+        width: 100%;
+        height: 100vh;
+        margin: 0px;
+        overflow: hidden;
+    }
+    .nav-bar-right {
+        display: none;
+    }
+    .nav-bar .menu {
+        visibility:visible;
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+    .nav-bar-middle {
+        display: none;
+    }
+    .menu svg {
+        height: auto;
+        width: 35px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .home-items{
+        width: calc(50vw - 20px);
+    }
+    .direction{
+        display: none;
+    }
+    .home-text-top {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
     .profile {
-      flex-direction: column;
-      height: 100vh;
+        flex-direction: column;
+        height: 100vh;
     }
     .left-login-container {
         display: none;
-      }
+    }
     .right-login-container {
         width: 100%;
         height: 100vh;
@@ -376,8 +603,34 @@ input[type=submit]:hover {
         justify-content: center;
         align-items: center;
         padding: 20px;
-      }
-  }
+        }
+    .quote {
+        display: flex;
+        top:15%;
+        place-items: center;
+        text-align: left;
+        font-size: 50px;
+        max-width: 500px;
+    }
+    .button {
+        margin-left: 0px;
+        background-color: #fff;
+        min-width: 150px;
+        text-decoration: none;
+        outline: none;
+        border: none;
+        align-items: center;
+        font-size: 16px;
+        font-family: GeneralSans-Medium;
+    }
+    .button-con {
+        position: absolute;
+        bottom: 20px;
+        right: 40px;
+        margin-left: 20px;
+        z-index: 2;
+    }
+}
 
 @media (max-width: 631px) {
     .start-screen-text {
@@ -409,7 +662,10 @@ input[type=submit]:hover {
     }
 }
 
-
-
+@media (max-width: 450px) {
+    .side-navbar {
+        width: 100%;
+      }
+}
 
 </style>
