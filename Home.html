@@ -129,17 +129,6 @@
                 <button id="next"> &gt; </button>
             </div>    
         </div>
-        <!-- Script for the button-->
-        <script>
-            document.getElementById('next').onclick = function() {
-                const widthItem = document.querySelector('.item').offsetWidth + 20; // add margin
-                document.getElementById('formList').scrollLeft += widthItem;
-            };
-            document.getElementById('prev').onclick = function() {
-                const widthItem = document.querySelector('.item').offsetWidth + 20;
-                document.getElementById('formList').scrollLeft -= widthItem;
-            };
-        </script>
         <div id="formList">
             <div id="list">
                 <div class="item">
@@ -177,12 +166,12 @@
         <div class="home-text-top">
             <h1>WOMEN'S FAVORITE</h1>
             <div class="direction">
-                <button id="prev"> &lt; </button>
-                <button id="next"> &gt; </button>
+                <button id="prev1"> &lt; </button>
+                <button id="next1"> &gt; </button>
             </div>    
         </div>
-        <div id="formList">
-            <div id="list">
+        <div id="formList1">
+            <div id="list1">
                 <div class="item">
                     <img src="Source/Images/Product1.avif" class="product">
                 </div>
@@ -215,7 +204,25 @@
                 </div>
             </div>
         </div>
-
+        <!-- Script for the button-->
+        <script>
+            document.getElementById('next').onclick = function() {
+                const widthItem = document.querySelector('.item').offsetWidth + 20;
+                document.getElementById('formList').scrollLeft += widthItem;
+            };
+            document.getElementById('prev').onclick = function() {
+                const widthItem = document.querySelector('.item').offsetWidth + 20;
+                document.getElementById('formList').scrollLeft -= widthItem;
+            };
+            document.getElementById('next1').onclick = function() {
+                const widthItem = document.querySelector('.item').offsetWidth + 20;
+                document.getElementById('formList1').scrollLeft += widthItem;
+            };
+            document.getElementById('prev1').onclick = function() {
+                const widthItem = document.querySelector('.item').offsetWidth + 20;
+                document.getElementById('formList1').scrollLeft -= widthItem;
+            };
+        </script>
     </section>
 
 
