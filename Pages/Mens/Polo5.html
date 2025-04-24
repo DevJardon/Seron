@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link rel="stylesheet" type="text/css" href="../Source/css/Style.css">
+    <link rel="stylesheet" type="text/css" href="../../Source/css/Style.css">
 </head>
 <script>
     window.addEventListener('scroll', () => {
@@ -15,18 +16,18 @@
         navbar.classList.remove('scrolled');
       }
     });
-  </script>
-  
+</script>
+
 <body>
-    <div class="nav-bar">
+    <div class="nav-bar scrolled">
         <div class="nav-bar-left">
-            <img src="../Source/images/logo-only-black.svg" class="logo" alt="Seron Logo">
-            <a href="../Home.html" class="brand-name">SERON</a>
+            <img src="../../Source/images/logo-only-black.svg" class="logo" alt="Seron Logo">
+            <a href="../../Home.html" class="brand-name">SERON</a>
         </div>
         <div class="nav-bar-middle">
-            <a href="../Home.html">Home</a>
-            <a href="../Pages/Mens.html">Men</a>
-            <a href="../Pages/Womens.html">Women</a>
+            <a href="../../Home.html">Home</a>
+            <a href="../../Pages/Mens.html">Men</a>
+            <a href="../../Pages/Womens.html">Women</a>
             <a href="#">About Us</a>
             <a href="#">Contact</a>
         </div>
@@ -36,12 +37,12 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
                     </svg>                  
                 </a>
-                <a href="../Pages/Cart.html">
+                <a href="../../Pages/Cart.html">
                     <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"/>
                     </svg>
                 </a>
-                <a href="../Pages/Profile.html">
+                <a href="../../Pages/Profile.html">
                     <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                     </svg>                  
@@ -52,7 +53,7 @@
                   <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
                   </svg>                     
-            </a>  
+            </button>  
             <script>
                 function toggleMenu() {
                     const sideNavbar = document.getElementById("side-navbar");
@@ -64,33 +65,86 @@
         </div>    
     </div>
     
-    <!-- Side Navigation Bar for Mobile View -->
     <div class="side-navbar" id="side-navbar">
         <button class="close-btn" onclick="toggleMenu()">
             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
               </svg>              
         </button>
-        <a href="../Home.html">Home</a>
-        <a href="../Pages/Mens.html">Men</a>
-        <a href="../Pages/Womens.html">Women</a>
+        <a href="../../Home.html">Home</a>
+        <a href="../../Pages/Mens.html">Men</a>
+        <a href="../../Pages/Womens.html">Women</a>
         <a href="#">About Us</a>
         <a href="#">Contact</a>
     </div>
     <div id="overlay" class="overlay"></div>
-    <!-- Script for turning background transparent to white when scrolling down -->
-    <script>
-        
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.nav-bar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+
+    <div class="product-info-page">
+        <div class="product-image-container">
+          <img src="../../Source/Images/Mens/Men_Polo_5.avif" alt="Product Image" class="product-image">
+        </div>
+      
+        <div class="product-details">
+          <div class="product-name">Loose Fit Zip-Top Polo</div>
+          <div class="product-category">Polo</div>
+          <div class="product-price">PHP899.00</div>
+      
+          <div class="product-size">
+            <p>Select Size</p>
+            <div class="size-options">
+              <button class="size-btn">S</button>
+              <button class="size-btn">M</button>
+              <button class="size-btn">L</button>
+              <button class="size-btn">XL</button>
+            </div>
+          </div>
+      
+          <div class="product-description">
+            <p>This loose-fit zip-top polo shirt offers a relaxed silhouette and a modern zip-up neckline. The short sleeves and chest pocket add casual details to this comfortable everyday piece.</p>
+          </div>
+      
+          <button class="add-to-cart-btn">Add to Cart</button>
+          
+          <!-- New sections below -->
+          <div class="related-products">
+            <h3>Related Products</h3>
+            <div class="related-products-container">
+              <div class="related-product">
+                <a href="Polo6.html">
+                    <img src="../../Source/Images/Mens/Men_Polo_6.avif" alt="Related Product 1" class="related-product-image">
+                    <h4>Regular-Fit Pointelle-Knit Polo</h4>
+                    <p>PHP849.00</p>
+                </a>
+              </div>
+              <div class="related-product">
+                <a href="Polo7.html">
+                    <img src="../../Source/Images/Mens/Men_Polo_7.avif" alt="Related Product 2" class="related-product-image">
+                    <h4>Regular Fit Collared Polo</h4>
+                    <p>PHP799.00</p>
+                </a>
+              </div>
+              <div class="related-product">
+                <a href="Polo8.html">
+                    <img src="../../Source/Images/Mens/Men_Polo_8.avif" alt="Related Product 2" class="related-product-image">
+                    <h4>Slim Fit Lyocell Polo</h4>
+                    <p>PHP999.00</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="footer"></section>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+            });
+          });
         });
-    </script>
-
-
+      </script>
 </body>
 </html>
