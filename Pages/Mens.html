@@ -1,11 +1,1118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cart</title>
+    <link rel="stylesheet" type="text/css" href="../Source/css/Style.css">
 </head>
+<script>
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+  
 <body>
+    <div class="nav-bar">
+        <div class="nav-bar-left">
+            <img src="../Source/images/logo-only-black.svg" class="logo" alt="Seron Logo">
+            <a href="../Home.html" class="brand-name">SERON</a>
+        </div>
+        <div class="nav-bar-middle">
+            <a href="../Home.html">Home</a>
+            <a href="../Pages/Mens.html">Men</a>
+            <a href="../Pages/Womens.html">Women</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="nav-bar-right">
+                <a href="#" id="search-btn">
+                    <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+                    </svg>                  
+                </a>
+                <a href="../Pages/Cart.html">
+                    <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"/>
+                    </svg>
+                </a>
+                <a href="../Pages/Profile.html">
+                    <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                    </svg>                  
+                </a>
+        </div>
+        <div class="menu">
+            <button class="menu" onclick="toggleMenu()">
+                  <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
+                  </svg>                     
+            </a>  
+            <script>
+                function toggleMenu() {
+                    const sideNavbar = document.getElementById("side-navbar");
+                    const overlay = document.getElementById("overlay");
+                    sideNavbar.classList.toggle("open");
+                    overlay.classList.toggle("open");
+                }
+            </script>       
+        </div>    
+    </div>
     
-</body>
+    <!-- Side Navigation Bar for Mobile View -->
+    <div class="side-navbar" id="side-navbar">
+        <button class="close-btn" onclick="toggleMenu()">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
+              </svg>              
+        </button>
+        <a href="../Home.html">Home</a>
+        <a href="../Pages/Mens.html">Men</a>
+        <a href="../Pages/Womens.html">Women</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+    </div>
+    <div id="overlay" class="overlay"></div>
+    <!-- Script for turning background transparent to white when scrolling down -->
+    <script>
+        
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.nav-bar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+    <section class="product-page">
+        <h2>VIEW ALL</h2>
+        <div id="formList">
+            <div id="list">
+                <div class="product-lists">
+                    <button class="filter-btn active" onclick="filterItems('all', this)">VIEW ALL</button>
+                </div>
+                <div class="product-lists">
+                    <button class="filter-btn" onclick="filterItems('shirts', this)">SHIRTS</button>
+                </div>
+                <div class="product-lists">
+                    <button class="filter-btn" onclick="filterItems('jeans', this)">JEANS</button>
+                </div>
+                <div class="product-lists">
+                    <button class="filter-btn" onclick="filterItems('hoodies', this)">HOODIES & SWEATERS</button>
+                </div>
+                <div class="product-lists">
+                    <button class="filter-btn" onclick="filterItems('suits', this)">SUITS</button>
+                </div>
+                <div class="product-lists">
+                    <button class="filter-btn" onclick="filterItems('polos', this)">POLOS</button>
+                </div>
+                <div class="product-lists">
+                    <button class="filter-btn" onclick="filterItems('shorts', this)">SHORTS</button>
+                </div>
+                <div class="product-lists">
+                    <button class="filter-btn" onclick="filterItems('tanks', this)">TANKTOPS</button>
+                </div>
+            </div>
+        </div>
+        <div class="products-con">
+            <div class="list">
+                <!-- Hoodies (8 items) -->
+                <div class="item hoodies">
+                    <div class ="img">
+                        <a href="Mens/Hoodie1.html">
+                            <img src="../Source/Images/Mens/Men_Hoodies_1.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Hoodies_1_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Loose Fit Zip Hoodie</H1>
+                            <p>PHP1,199.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item hoodies">
+                    <div class ="img">
+                        <a href="Mens/Hoodie2.html">
+                            <img src="../Source/Images/Mens/Men_Hoodies_2.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Hoodies_2_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Loose Fit Sweatshirt</H1>
+                            <p>PHP1,299.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item hoodies best-seller">
+                    <div class ="img">
+                        <a href="Mens/Hoodie3.html">
+                            <img src="../Source/Images/Mens/Men_Hoodies_3.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Hoodies_3_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Loose Fit Printed Hoodie</H1>
+                            <p>PHP1,499.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item hoodies">
+                    <div class ="img">
+                        <a href="Mens/Hoodie4.html">
+                            <img src="../Source/Images/Mens/Men_Hoodies_4.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Hoodies_4_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Loose Fit Sweatshirt</H1>
+                            <p>PHP1,199.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item hoodies">
+                    <div class ="img">
+                        <a href="Mens/Hoodie5.html">
+                            <img src="../Source/Images/Mens/Men_Hoodies_5.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Hoodies_5_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Hooded Activewear Jacket</H1>
+                            <p>PHP1,299.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item hoodies">
+                    <div class ="img">
+                        <a href="Mens/Hoodie6.html">
+                            <img src="../Source/Images/Mens/Men_Hoodies_6.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Hoodies_6_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Loose Fit Hoodie</H1>
+                            <p>PHP1,199.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item hoodies best-seller">
+                    <div class ="img">
+                        <a href="Mens/Hoodie7.html">
+                            <img src="../Source/Images/Mens/Men_Hoodies_7.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Hoodies_7_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Sleeveless Sports Hoodie</H1>
+                            <p>PHP1,299.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item hoodies">
+                    <div class ="img">
+                        <a href="Mens/Hoodie8.html">
+                            <img src="../Source/Images/Mens/Men_Hoodies_8.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Hoodies_8_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Daft Punk Hoodie</H1>
+                            <p>PHP1,199.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Shorts (7 items) -->
+                <div class="item shorts">
+                    <div class ="img">
+                        <a href="Mens/Shorts1.html">
+                            <img src="../Source/Images/Mens/Men_Shorts_1.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Shorts_1_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Regular Fit Canvas Shorts</H1>
+                            <p>PHP459.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item shorts best-seller">
+                    <div class ="img">
+                        <a href="Mens/Shorts2.html">
+                            <img src="../Source/Images/Mens/Men_Shorts_2.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Shorts_2_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Regular-Fit Cargo Shorts</H1>
+                            <p>PHP659.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item shorts">
+                    <div class ="img">
+                        <a href="Mens/Shorts3.html">
+                            <img src="../Source/Images/Mens/Men_Shorts_3.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Shorts_3_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Regular Linen-blend Shorts</H1>
+                            <p>PHP699.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item shorts">
+                    <div class ="img">
+                        <a href="Mens/Shorts4.html">
+                            <img src="../Source/Images/Mens/Men_Shorts_4.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Shorts_4_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Slim Fit Cotton Twill Shorts</H1>
+                            <p>PHP559.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item shorts">
+                    <div class ="img">
+                        <a href="Mens/Shorts5.html">
+                            <img src="../Source/Images/Mens/Men_Shorts_5.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Shorts_5_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Regular Fit Sweatshorts</H1>
+                            <p>PHP699.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item shorts">
+                    <div class ="img">
+                        <a href="Mens/Shorts6.html">
+                            <img src="../Source/Images/Mens/Men_Shorts_6.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Shorts_6_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Baggy Denim Shorts</H1>
+                            <p>PHP899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item shorts">
+                    <div class ="img">
+                        <a href="Mens/Shorts7.html">
+                            <img src="../Source/Images/Mens/Men_Shorts_7.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Shorts_7_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Loose Fit Nylon Shorts</H1>
+                            <p>PHP599.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Jeans (8 items) -->
+                <div class="item jeans">
+                    <div class ="img">
+                        <a href="Mens/Jeans1.html">
+                            <img src="../Source/Images/Mens/Men_Jeans_1.avif" class="main-img" style="object-position: 50% 10%;">
+                            <img src="../Source/Images/Mens/Men_Jeans_1_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Straight Regular Jeans</H1>
+                            <p>PHP999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item jeans">
+                    <div class ="img">
+                        <a href="Mens/Jeans2.html">
+                            <img src="../Source/Images/Mens/Men_Jeans_2.avif" class="main-img" style="object-position: 50% 10%;">
+                            <img src="../Source/Images/Mens/Men_Jeans_2_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Super Baggy Jeans</H1>
+                            <p>PHP1,199.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item jeans">
+                    <div class ="img">
+                        <a href="Mens/Jeans3.html">
+                            <img src="../Source/Images/Mens/Men_Jeans_3.avif" class="main-img" style="object-position: 50% 10%;">
+                            <img src="../Source/Images/Mens/Men_Jeans_3_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Slim Jeans</H1>
+                            <p>PHP1,499.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item jeans">
+                    <div class ="img">
+                        <a href="Mens/Jeans4.html">
+                            <img src="../Source/Images/Mens/Men_Jeans_4.avif" class="main-img" style="object-position: 50% 10%;">
+                            <img src="../Source/Images/Mens/Men_Jeans_4_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Carpenter Baggy Jeans</H1>
+                            <p>PHP1,799.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item jeans">
+                    <div class ="img">
+                        <a href="Mens/Jeans5.html">
+                            <img src="../Source/Images/Mens/Men_Jeans_5.avif" class="main-img" style="object-position: 50% 10%;">
+                            <img src="../Source/Images/Mens/Men_Jeans_5_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Baggy Jeans</H1>
+                            <p>PHP1,899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item jeans">
+                    <div class ="img">
+                        <a href="Mens/Jeans6.html">
+                            <img src="../Source/Images/Mens/Men_Jeans_6.avif" class="main-img" style="object-position: 50% 10%;">
+                            <img src="../Source/Images/Mens/Men_Jeans_6_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Product 6</H1>
+                            <p>PHP1,799.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item jeans">
+                    <div class ="img">
+                        <a href="Mens/Jeans7.html">
+                            <img src="../Source/Images/Mens/Men_Jeans_7.avif" class="main-img" style="object-position: 50% 10%;">
+                            <img src="../Source/Images/Mens/Men_Jeans_7_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Relaxed-Fit Denim Pants</H1>
+                            <p>PHP1,799.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="item jeans">
+                    <div class ="img">
+                        <a href="Mens/Jeans8.html">
+                            <img src="../Source/Images/Mens/Men_Jeans_8.avif" class="main-img" style="object-position: 50% 10%;">
+                            <img src="../Source/Images/Mens/Men_Jeans_8_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Patterned Baggy Jeans</H1>
+                            <p>PHP1,899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item suits">
+                    <div class ="img">
+                        <a href="Mens/Suits1.html">
+                            <img src="../Source/Images/Mens/Men_Suits_1.avif" class="main-img" style="object-position: 50% 10%;">
+                            <img src="../Source/Images/Mens/Men_Suits_1_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Slim-Fit Linen Suit Vest</H1>
+                            <p>PHP1,899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item suits">
+                    <div class ="img">
+                        <a href="Mens/Suits2.html">
+                            <img src="../Source/Images/Mens/Men_Suits_2.avif" class="main-img" style="object-position: 50% 10%;">
+                            <img src="../Source/Images/Mens/Men_Suits_2_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Slim Fit Jacket</H1>
+                            <p>PHP1,899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item suits">
+                    <div class ="img">
+                        <a href="Mens/Suits3.html">
+                            <img src="../Source/Images/Mens/Men_Suits_3.avif" class="main-img" style="object-position: 50% 10%;">
+                            <img src="../Source/Images/Mens/Men_Suits_3_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Relaxed Fit Jacket</H1>
+                            <p>PHP1,899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item suits">
+                    <div class ="img">
+                        <a href="Mens/Suits4.html">
+                            <img src="../Source/Images/Mens/Men_Suits_4.avif" class="main-img" style="object-position: 50% 10%;">
+                            <img src="../Source/Images/Mens/Men_Suits_4_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Single-breasted Tuxedo Jacket</H1>
+                            <p>PHP1,899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item polos">
+                    <div class ="img">
+                        <a href="Mens/Polo1.html">
+                            <img src="../Source/Images/Mens/Men_Polo_1.webp" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Polo_1_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Loose Fit Crinkled Polo</H1>
+                            <p>PHP1,099.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item polos">
+                    <div class ="img">
+                        <a href="Mens/Polo2.html">
+                            <img src="../Source/Images/Mens/Men_Polo_2.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Polo_2_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Textured-Knit Polo</H1>
+                            <p>PHP899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item polos">
+                    <div class ="img">
+                        <a href="Mens/Polo3.html">
+                            <img src="../Source/Images/Mens/Men_Polo_3.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Polo_3_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>COOLMAX® Slim Fit Polo</H1>
+                            <p>PHP699.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item polos">
+                    <div class ="img">
+                        <a href="Mens/Polo4.html">
+                            <img src="../Source/Images/Mens/Men_Polo_4.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Polo_4_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Regular-Fit Polo</H1>
+                            <p>PHP899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item polos">
+                    <div class ="img">
+                        <a href="Mens/Polo5.html">
+                            <img src="../Source/Images/Mens/Men_Polo_5.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Polo_5_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Loose Fit Zip-top Polo</H1>
+                            <p>PHP899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item polos">
+                    <div class ="img">
+                        <a href="Mens/Polo6.html">
+                            <img src="../Source/Images/Mens/Men_Polo_6.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Polo_6_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Regular-Fit Pointelle-Knit Polo</H1>
+                            <p>PHP849.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item polos">
+                    <div class ="img">
+                        <a href="Mens/Polo7.html">
+                            <img src="../Source/Images/Mens/Men_Polo_7.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Polo_7_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Regular Fit Collared Polo</H1>
+                            <p>PHP799.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item polos">
+                    <div class ="img">
+                        <a href="Mens/Polo8.html">
+                            <img src="../Source/Images/Mens/Men_Polo_8.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Polo_8_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Slim Fit Lyocell Polo</H1>
+                            <p>PHP999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item tanks best-seller">
+                    <div class ="img">
+                        <a href="Mens/Tank1.html">
+                            <img src="../Source/Images/Mens/Men_Tank_1.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Tank_1_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Slim Fit Ribbed Vest</H1>
+                            <p>PHP399.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item tanks">
+                    <div class ="img">
+                        <a href="Mens/Tank2.html">
+                            <img src="../Source/Images/Mens/Men_Tank_2.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Tank_2_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>COOLMAX® Regular Fit Vest</H1>
+                            <p>PHP299.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item tanks">
+                    <div class ="img">
+                        <a href="Mens/Tank3.html">
+                            <img src="../Source/Images/Mens/Men_Tank_3.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Tank_3_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Regular-Fit Ribbed Vest</H1>
+                            <p>PHP499.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="item tanks">
+                    <div class ="img">
+                        <a href="Mens/Tank4.html">
+                            <img src="../Source/Images/Mens/Men_Tank_4.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Tank_4_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Regular-Fit Washed Tank Top</H1>
+                            <p>PHP349.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="item tanks">
+                    <div class ="img">
+                        <a href="Mens/Tank5.html">
+                            <img src="../Source/Images/Mens/Men_Tank_5.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Tank_5_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Regular-Fit Sports Tank Top</H1>
+                            <p>PHP259.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item tanks">
+                    <div class ="img">
+                        <a href="Mens/Tank6.html">
+                            <img src="../Source/Images/Mens/Men_Tank_6.avif" class="main-img" style="object-position:  100% 50%;">
+                            <img src="../Source/Images/Mens/Men_Tank_6_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Loose Fit Printed Vest</H1>
+                            <p>PHP999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item shirts best-seller">
+                    <div class ="img">
+                        <a href="Mens/Top1.html">
+                            <img src="../Source/Images/Mens/Men_Top_1.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Top_1_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Oversized Fit T-shirt</H1>
+                            <p>PHP699.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item shirts">
+                    <div class ="img">
+                        <a href="Mens/Top2.html">
+                            <img src="../Source/Images/Mens/Men_Top_2.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Top_2_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Loose Fit Vintage-Look Printed Shirt</H1>
+                            <p>PHP999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item shirts">
+                    <div class ="img">
+                        <a href="Mens/Top3.html">
+                            <img src="../Source/Images/Mens/Men_Top_3.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Top_3_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Oversized Fit Printed Mesh Shirt</H1>
+                            <p>PHP999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item shirts">
+                    <div class ="img">
+                        <a href="Mens/Top4.html">
+                            <img src="../Source/Images/Mens/Men_Top_4.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Top_4_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Regular Fit T-shirt</H1>
+                            <p>PHP459.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item shirts">
+                    <div class ="img">
+                        <a href="Mens/Top5.html">
+                            <img src="../Source/Images/Mens/Men_Top_5.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Top_5_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>5-pack Regular Fit T-shirts</H1>
+                            <p>PHP1,999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item shirts">
+                    <div class ="img">
+                        <a href="Mens/Top6.html">
+                            <img src="../Source/Images/Mens/Men_Top_6.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Top_6_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Regular-Fit Sports Shirt</H1>
+                            <p>PHP999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item shirts best-seller">
+                    <div class ="img">
+                        <a href="Mens/Top7.html">
+                            <img src="../Source/Images/Mens/Men_Top_7.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Top_7_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Long Sleeve Shirt</H1>
+                            <p>PHP999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item shirts">
+                    <div class ="img">
+                        <a href="Mens/Top8.html">
+                            <img src="../Source/Images/Mens/Men_Top_8.avif" class="main-img">
+                            <img src="../Source/Images/Mens/Men_Top_8_Hover.avif" class="hover-img">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <H1>Regular Fit Printed Shirt</H1>
+                            <p>PHP699.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+
+        
+        <ul class="listPage">
+
+        </ul>
+    </section>
+    <section class="footer">
+
+    </section>
+
+    <script>
+        let thisPage = 1;
+        let limit = 8;
+        let allItems = Array.from(document.querySelectorAll('.list .item'));
+        let currentItems = [...allItems];
+        
+        function loadItem() {
+            allItems.forEach(item => item.style.display = 'none');
+            const begin = limit * (thisPage - 1);
+            const end = begin + limit;
+
+            currentItems.forEach((item, index) => {
+                item.style.display = (index >= begin && index < end) ? 'block' : 'none';
+            });
+
+            listPage();
+        }
+
+        function listPage() {
+            const count = Math.ceil(currentItems.length / limit);
+            const pagination = document.querySelector('.listPage');
+            pagination.innerHTML = '';
+
+            if (thisPage !== 1) {
+                const prev = document.createElement('li');
+                prev.innerText = 'PREV';
+                prev.onclick = () => changePage(thisPage - 1);
+                pagination.appendChild(prev);
+            }
+
+            for (let i = 1; i <= count; i++) {
+                const page = document.createElement('li');
+                page.innerText = i;
+                if (i === thisPage) page.classList.add('active');
+                page.onclick = () => changePage(i);
+                pagination.appendChild(page);
+            }
+
+            if (thisPage !== count) {
+                const next = document.createElement('li');
+                next.innerText = 'NEXT';
+                next.onclick = () => changePage(thisPage + 1);
+                pagination.appendChild(next);
+            }
+        }
+
+        function changePage(i) {
+            thisPage = i;
+            loadItem();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function filterItems(type, btn) {
+            const heading = document.querySelector('h2');
+            
+            if (type === 'all') {
+                heading.textContent = 'VIEW ALL';
+                currentItems = [...allItems];
+            } else {
+                heading.textContent = btn.innerText;
+                currentItems = allItems.filter(item => item.classList.contains(type));
+            }
+
+            thisPage = 1;
+            loadItem();
+
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.classList.remove('active');
+            });
+            btn.classList.add('active');
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const filterType = params.get('filter') || window.location.hash.substring(1);
+
+            if (filterType) {
+                const buttons = document.querySelectorAll('.filter-btn');
+                const btn = Array.from(buttons).find(b =>
+                    b.getAttribute('onclick')?.includes(`'${filterType}'`)
+                );
+                if (btn) {
+                    filterItems(filterType, btn);
+                } else {
+                    loadItem(); // fallback if button not found
+                }
+            } else {
+                loadItem();
+            }
+        });
+    </script>
+    </body>
 </html>

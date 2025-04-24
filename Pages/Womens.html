@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" type="text/css" href="../Source/css/Style.css">
+</head>
+<script>
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+  
+<body>
+    <div class="nav-bar">
+        <div class="nav-bar-left">
+            <img src="../Source/images/logo-only-black.svg" class="logo" alt="Seron Logo">
+            <a href="../Home.html" class="brand-name">SERON</a>
+        </div>
+        <div class="nav-bar-middle">
+            <a href="../Home.html">Home</a>
+            <a href="../Pages/Mens.html">Men</a>
+            <a href="../Pages/Womens.html">Women</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="nav-bar-right">
+                <a href="#" id="search-btn">
+                    <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+                    </svg>                  
+                </a>
+                <a href="../Pages/Cart.html">
+                    <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"/>
+                    </svg>
+                </a>
+                <a href="../Pages/Profile.html">
+                    <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                    </svg>                  
+                </a>
+        </div>
+        <div class="menu">
+            <button class="menu" onclick="toggleMenu()">
+                  <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
+                  </svg>                     
+            </a>  
+            <script>
+                function toggleMenu() {
+                    const sideNavbar = document.getElementById("side-navbar");
+                    const overlay = document.getElementById("overlay");
+                    sideNavbar.classList.toggle("open");
+                    overlay.classList.toggle("open");
+                }
+            </script>       
+        </div>    
+    </div>
+    
+    <!-- Side Navigation Bar for Mobile View -->
+    <div class="side-navbar" id="side-navbar">
+        <button class="close-btn" onclick="toggleMenu()">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
+              </svg>              
+        </button>
+        <a href="../Home.html">Home</a>
+        <a href="../Pages/Mens.html">Men</a>
+        <a href="../Pages/Womens.html">Women</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+    </div>
+    <div id="overlay" class="overlay"></div>
+    <!-- Script for turning background transparent to white when scrolling down -->
+    <script>
+        
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.nav-bar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+    <section class="product-page">
+        <h2>VIEW ALL</h2>
+        <div id="formList">
+            <div id="list">
+                <div class="product-lists">
+                    <button class="filter-btn active" onclick="filterItems('all', this)">VIEW ALL</button>
+                </div>
+                <div class="product-lists">
+                    <button class="filter-btn" onclick="filterItems('dress', this)">DRESS</button>
+                </div>
+                <div class="product-lists">
+                    <button class="filter-btn" onclick="filterItems('jeans', this)">JEANS</button>
+                </div>
+                <div class="product-lists">
+                    <button class="filter-btn" onclick="filterItems('blouse', this)">BLOUSE</button>
+                </div>
+                <div class="product-lists">
+                    <button class="filter-btn" onclick="filterItems('jumpsuit', this)">JUMPSUITS</button>
+                </div>
+                <div class="product-lists">
+                    <button class="filter-btn" onclick="filterItems('skirt', this)">SKIRTS</button>
+                </div>
+                <div class="product-lists">
+                    <button class="filter-btn" onclick="filterItems('top', this)">TOPS</button>
+                </div>
+            </div>
+        </div>
+        <div class="products-con">
+            <div class="list">
+                <div class="item blouse">
+                    <div class="img">
+                        <a href="Womens/Blouse1.html">
+                            <img src="../Source/Images/Womens/Women_Blouse_1.avif" class="main-img" alt="Blouse 1">
+                            <img src="../Source/Images/Womens/Women_Blouse_1_Hover.avif" class="hover-img" alt="Blouse 1 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Blouse 1</h1>
+                            <p>PHP899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item blouse">
+                    <div class="img">
+                        <a href="Womens/Blouse2.html">
+                            <img src="../Source/Images/Womens/Women_Blouse_2.avif" class="main-img" alt="Blouse 2">
+                            <img src="../Source/Images/Womens/Women_Blouse_2_Hover.avif" class="hover-img" alt="Blouse 2 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Blouse 2</h1>
+                            <p>PHP999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item blouse">
+                    <div class="img">
+                        <a href="Womens/Blouse3.html">
+                            <img src="../Source/Images/Womens/Women_Blouse_3.avif" class="main-img" alt="Blouse 3">
+                            <img src="../Source/Images/Womens/Women_Blouse_3_Hover.avif" class="hover-img" alt="Blouse 3 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Blouse 3</h1>
+                            <p>PHP1,099.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item blouse">
+                    <div class="img">
+                        <a href="Womens/Blouse4.html">
+                            <img src="../Source/Images/Womens/Women_Blouse_4.avif" class="main-img" alt="Blouse 4">
+                            <img src="../Source/Images/Womens/Women_Blouse_4_Hover.avif" class="hover-img" alt="Blouse 4 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Blouse 4</h1>
+                            <p>PHP1,199.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item blouse">
+                    <div class="img">
+                        <a href="Womens/Blouse5.html">
+                            <img src="../Source/Images/Womens/Women_Blouse_5.avif" class="main-img" alt="Blouse 5">
+                            <img src="../Source/Images/Womens/Women_Blouse_5_Hover.avif" class="hover-img" alt="Blouse 5 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Blouse 5</h1>
+                            <p>PHP1,249.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item blouse">
+                    <div class="img">
+                        <a href="Womens/Blouse6.html">
+                            <img src="../Source/Images/Womens/Women_Blouse_6.avif" class="main-img" alt="Blouse 6">
+                            <img src="../Source/Images/Womens/Women_Blouse_6_Hover.avif" class="hover-img" alt="Blouse 6 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Blouse 6</h1>
+                            <p>PHP1,349.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item dress">
+                    <div class="img">
+                        <a href="Womens/Dress1.html">
+                            <img src="../Source/Images/Womens/Women_Dress_1.avif" class="main-img" alt="Dress 1">
+                            <img src="../Source/Images/Womens/Women_Dress_1_Hover.avif" class="hover-img" alt="Dress 1 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Dress 1</h1>
+                            <p>PHP1,699.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item dress">
+                    <div class="img">
+                        <a href="Womens/Dress2.html">
+                            <img src="../Source/Images/Womens/Women_Dress_2.avif" class="main-img" alt="Dress 2">
+                            <img src="../Source/Images/Womens/Women_Dress_2_Hover.avif" class="hover-img" alt="Dress 2 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Dress 2</h1>
+                            <p>PHP1,799.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item dress">
+                    <div class="img">
+                        <a href="Womens/Dress3.html">
+                            <img src="../Source/Images/Womens/Women_Dress_3.avif" class="main-img" alt="Dress 3">
+                            <img src="../Source/Images/Womens/Women_Dress_3_Hover.avif" class="hover-img" alt="Dress 3 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Dress 3</h1>
+                            <p>PHP1,999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item dress">
+                    <div class="img">
+                        <a href="Womens/Dress4.html">
+                            <img src="../Source/Images/Womens/Women_Dress_4.avif" class="main-img" alt="Dress 4">
+                            <img src="../Source/Images/Womens/Women_Dress_4_Hover.avif" class="hover-img" alt="Dress 4 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Dress 4</h1>
+                            <p>PHP2,199.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item dress">
+                    <div class="img">
+                        <a href="Womens/Dress5.html">
+                            <img src="../Source/Images/Womens/Women_Dress_5.avif" class="main-img" alt="Dress 5">
+                            <img src="../Source/Images/Womens/Women_Dress_5_Hover.avif" class="hover-img" alt="Dress 5 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Dress 5</h1>
+                            <p>PHP2,499.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item dress">
+                    <div class="img">
+                        <a href="Womens/Dress6.html">
+                            <img src="../Source/Images/Womens/Women_Dress_6.avif" class="main-img" alt="Dress 6">
+                            <img src="../Source/Images/Womens/Women_Dress_6_Hover.avif" class="hover-img" alt="Dress 6 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Dress 6</h1>
+                            <p>PHP2,799.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item dress">
+                    <div class="img">
+                        <a href="Womens/Dress7.html">
+                            <img src="../Source/Images/Womens/Women_Dress_7.avif" class="main-img" alt="Dress 7">
+                            <img src="../Source/Images/Womens/Women_Dress_7_Hover.avif" class="hover-img" alt="Dress 7 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Dress 7</h1>
+                            <p>PHP2,999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item dress">
+                    <div class="img">
+                        <a href="Womens/Dress8.html">
+                            <img src="../Source/Images/Womens/Women_Dress_8.avif" class="main-img" alt="Dress 8">
+                            <img src="../Source/Images/Womens/Women_Dress_8_Hover.avif" class="hover-img" alt="Dress 8 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Dress 8</h1>
+                            <p>PHP3,199.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item jeans">
+                    <div class="img">
+                        <a href="Womens/Jeans1.html">
+                            <img src="../Source/Images/Womens/Women_Jeans_1.avif" class="main-img" alt="Jeans 1">
+                            <img src="../Source/Images/Womens/Women_Jeans_1_Hover.avif" class="hover-img" alt="Jeans 1 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Jeans 1</h1>
+                            <p>PHP1,299.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item jeans">
+                    <div class="img">
+                        <a href="Womens/Jeans2.html">
+                            <img src="../Source/Images/Womens/Women_Jeans_2.avif" class="main-img" alt="Jeans 2">
+                            <img src="../Source/Images/Womens/Women_Jeans_2_Hover.avif" class="hover-img" alt="Jeans 2 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Jeans 2</h1>
+                            <p>PHP1,399.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item jeans">
+                    <div class="img">
+                        <a href="Womens/Jeans3.html">
+                            <img src="../Source/Images/Womens/Women_Jeans_3.avif" class="main-img" alt="Jeans 3">
+                            <img src="../Source/Images/Womens/Women_Jeans_3_Hover.avif" class="hover-img" alt="Jeans 3 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Jeans 3</h1>
+                            <p>PHP1,499.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item jeans">
+                    <div class="img">
+                        <a href="Womens/Jeans4.html">
+                            <img src="../Source/Images/Womens/Women_Jeans_4.avif" class="main-img" alt="Jeans 4">
+                            <img src="../Source/Images/Womens/Women_Jeans_4_Hover.avif" class="hover-img" alt="Jeans 4 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Jeans 4</h1>
+                            <p>PHP1,599.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item jeans">
+                    <div class="img">
+                        <a href="Womens/Jeans5.html">
+                            <img src="../Source/Images/Womens/Women_Jeans_5.avif" class="main-img" alt="Jeans 5">
+                            <img src="../Source/Images/Womens/Women_Jeans_5_Hover.avif" class="hover-img" alt="Jeans 5 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Jeans 5</h1>
+                            <p>PHP1,799.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item jeans">
+                    <div class="img">
+                        <a href="Womens/Jeans6.html">
+                            <img src="../Source/Images/Womens/Women_Jeans_6.avif" class="main-img" alt="Jeans 6">
+                            <img src="../Source/Images/Womens/Women_Jeans_6_Hover.avif" class="hover-img" alt="Jeans 6 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Jeans 6</h1>
+                            <p>PHP1,899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                                
+                <div class="item jumpsuit">
+                    <div class="img">
+                        <a href="Womens/Jumpsuit1.html">
+                            <img src="../Source/Images/Womens/Women_Jumpsuit_1.avif" class="main-img" alt="Jumpsuit 1">
+                            <img src="../Source/Images/Womens/Women_Jumpsuit_1_Hover.avif" class="hover-img" alt="Jumpsuit 1 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Jumpsuit 1</h1>
+                            <p>PHP1,599.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item jumpsuit">
+                    <div class="img">
+                        <a href="Womens/Jumpsuit2.html">
+                            <img src="../Source/Images/Womens/Women_Jumpsuit_2.avif" class="main-img" alt="Jumpsuit 2">
+                            <img src="../Source/Images/Womens/Women_Jumpsuit_2_Hover.avif" class="hover-img" alt="Jumpsuit 2 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Jumpsuit 2</h1>
+                            <p>PHP1,799.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item jumpsuit">
+                    <div class="img">
+                        <a href="Womens/Jumpsuit3.html">
+                            <img src="../Source/Images/Womens/Women_Jumpsuit_3.avif" class="main-img" alt="Jumpsuit 3">
+                            <img src="../Source/Images/Womens/Women_Jumpsuit_3_Hover.avif" class="hover-img" alt="Jumpsuit 3 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Jumpsuit 3</h1>
+                            <p>PHP1,999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item jumpsuit">
+                    <div class="img">
+                        <a href="Womens/Jumpsuit4.html">
+                            <img src="../Source/Images/Womens/Women_Jumpsuit_4.avif" class="main-img" alt="Jumpsuit 4">
+                            <img src="../Source/Images/Womens/Women_Jumpsuit_4_Hover.avif" class="hover-img" alt="Jumpsuit 4 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Jumpsuit 4</h1>
+                            <p>PHP2,099.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item jumpsuit">
+                    <div class="img">
+                        <a href="Womens/Jumpsuit5.html">
+                            <img src="../Source/Images/Womens/Women_Jumpsuit_5.avif" class="main-img" alt="Jumpsuit 5">
+                            <img src="../Source/Images/Womens/Women_Jumpsuit_5_Hover.avif" class="hover-img" alt="Jumpsuit 5 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Jumpsuit 5</h1>
+                            <p>PHP2,299.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item jumpsuit">
+                    <div class="img">
+                        <a href="Womens/Jumpsuit6.html">
+                            <img src="../Source/Images/Womens/Women_Jumpsuit_6.avif" class="main-img" alt="Jumpsuit 6">
+                            <img src="../Source/Images/Womens/Women_Jumpsuit_6_Hover.avif" class="hover-img" alt="Jumpsuit 6 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Jumpsuit 6</h1>
+                            <p>PHP2,499.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item skirt">
+                    <div class="img">
+                        <a href="Womens/Skirt1.html">
+                            <img src="../Source/Images/Womens/Women_Skirt_1.avif" class="main-img" alt="Skirt 1">
+                            <img src="../Source/Images/Womens/Women_Skirt_1_Hover.avif" class="hover-img" alt="Skirt 1 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Flared Skirt 1</h1>
+                            <p>PHP899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item skirt">
+                    <div class="img">
+                        <a href="Womens/Skirt2.html">
+                            <img src="../Source/Images/Womens/Women_Skirt_2.avif" class="main-img" alt="Skirt 2">
+                            <img src="../Source/Images/Womens/Women_Skirt_2_Hover.avif" class="hover-img" alt="Skirt 2 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Flared Skirt 2</h1>
+                            <p>PHP999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item skirt">
+                    <div class="img">
+                        <a href="Womens/Skirt3.html">
+                            <img src="../Source/Images/Womens/Women_Skirt_3.avif" class="main-img" alt="Skirt 3">
+                            <img src="../Source/Images/Womens/Women_Skirt_3_Hover.avif" class="hover-img" alt="Skirt 3 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Flared Skirt 3</h1>
+                            <p>PHP1,099.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item skirt">
+                    <div class="img">
+                        <a href="Womens/Skirt4.html">
+                            <img src="../Source/Images/Womens/Women_Skirt_4.avif" class="main-img" alt="Skirt 4">
+                            <img src="../Source/Images/Womens/Women_Skirt_4_Hover.avif" class="hover-img" alt="Skirt 4 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Flared Skirt 4</h1>
+                            <p>PHP1,199.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item skirt">
+                    <div class="img">
+                        <a href="Womens/Skirt5.html">
+                            <img src="../Source/Images/Womens/Women_Skirt_5.avif" class="main-img" alt="Skirt 5">
+                            <img src="../Source/Images/Womens/Women_Skirt_5_Hover.avif" class="hover-img" alt="Skirt 5 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Flared Skirt 5</h1>
+                            <p>PHP1,299.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item skirt">
+                    <div class="img">
+                        <a href="Womens/Skirt6.html">
+                            <img src="../Source/Images/Womens/Women_Skirt_6.avif" class="main-img" alt="Skirt 6">
+                            <img src="../Source/Images/Womens/Women_Skirt_6_Hover.avif" class="hover-img" alt="Skirt 6 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Flared Skirt 6</h1>
+                            <p>PHP1,499.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item top">
+                    <div class="img">
+                        <a href="Womens/Top1.html">
+                            <img src="../Source/Images/Womens/Women_Top_1.avif" class="main-img" alt="Top 1">
+                            <img src="../Source/Images/Womens/Women_Top_1_Hover.avif" class="hover-img" alt="Top 1 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Casual Top 1</h1>
+                            <p>PHP799.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item top">
+                    <div class="img">
+                        <a href="Womens/Top2.html">
+                            <img src="../Source/Images/Womens/Women_Top_2.avif" class="main-img" alt="Top 2">
+                            <img src="../Source/Images/Womens/Women_Top_2_Hover.avif" class="hover-img" alt="Top 2 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Casual Top 2</h1>
+                            <p>PHP899.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item top">
+                    <div class="img">
+                        <a href="Womens/Top3.html">
+                            <img src="../Source/Images/Womens/Women_Top_3.avif" class="main-img" alt="Top 3">
+                            <img src="../Source/Images/Womens/Women_Top_3_Hover.avif" class="hover-img" alt="Top 3 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Casual Top 3</h1>
+                            <p>PHP999.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item top">
+                    <div class="img">
+                        <a href="Womens/Top4.html">
+                            <img src="../Source/Images/Womens/Women_Top_4.avif" class="main-img" alt="Top 4">
+                            <img src="../Source/Images/Womens/Women_Top_4_Hover.avif" class="hover-img" alt="Top 4 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Casual Top 4</h1>
+                            <p>PHP1,099.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item top">
+                    <div class="img">
+                        <a href="Womens/Top5.html">
+                            <img src="../Source/Images/Womens/Women_Top_5.avif" class="main-img" alt="Top 5">
+                            <img src="../Source/Images/Womens/Women_Top_5_Hover.avif" class="hover-img" alt="Top 5 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Casual Top 5</h1>
+                            <p>PHP1,199.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item top">
+                    <div class="img">
+                        <a href="Womens/Top6.html">
+                            <img src="../Source/Images/Womens/Women_Top_6.avif" class="main-img" alt="Top 6">
+                            <img src="../Source/Images/Womens/Women_Top_6_Hover.avif" class="hover-img" alt="Top 6 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Casual Top 6</h1>
+                            <p>PHP1,299.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item top">
+                    <div class="img">
+                        <a href="Womens/Top7.html">
+                            <img src="../Source/Images/Womens/Women_Top_7.avif" class="main-img" alt="Top 7">
+                            <img src="../Source/Images/Womens/Women_Top_7_Hover.avif" class="hover-img" alt="Top 7 Hover">
+                        </a>
+                    </div>
+                    <div class="item-info">
+                        <div class="info">
+                            <h1>Casual Top 7</h1>
+                            <p>PHP1,399.00</p>
+                        </div>
+                        <div class="add">
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                                 
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </div>
+        </div>
+        
+
+        
+        <ul class="listPage">
+
+        </ul>
+    </section>
+    <section class="footer">
+
+    </section>
+
+    <script>
+        let thisPage = 1;
+        let limit = 8;
+        let allItems = Array.from(document.querySelectorAll('.list .item'));
+        let currentItems = [...allItems];
+        
+        function loadItem() {
+            allItems.forEach(item => item.style.display = 'none');
+            const begin = limit * (thisPage - 1);
+            const end = begin + limit;
+
+            currentItems.forEach((item, index) => {
+                item.style.display = (index >= begin && index < end) ? 'block' : 'none';
+            });
+
+            listPage();
+        }
+
+        function listPage() {
+            const count = Math.ceil(currentItems.length / limit);
+            const pagination = document.querySelector('.listPage');
+            pagination.innerHTML = '';
+
+            if (thisPage !== 1) {
+                const prev = document.createElement('li');
+                prev.innerText = 'PREV';
+                prev.onclick = () => changePage(thisPage - 1);
+                pagination.appendChild(prev);
+            }
+
+            for (let i = 1; i <= count; i++) {
+                const page = document.createElement('li');
+                page.innerText = i;
+                if (i === thisPage) page.classList.add('active');
+                page.onclick = () => changePage(i);
+                pagination.appendChild(page);
+            }
+
+            if (thisPage !== count) {
+                const next = document.createElement('li');
+                next.innerText = 'NEXT';
+                next.onclick = () => changePage(thisPage + 1);
+                pagination.appendChild(next);
+            }
+        }
+
+        function changePage(i) {
+            thisPage = i;
+            loadItem();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function filterItems(type, btn) {
+            const heading = document.querySelector('h2');
+            
+            if (type === 'all') {
+                heading.textContent = 'VIEW ALL';
+                currentItems = [...allItems];
+            } else {
+                heading.textContent = btn.innerText;
+                currentItems = allItems.filter(item => item.classList.contains(type));
+            }
+
+            thisPage = 1;
+            loadItem();
+
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.classList.remove('active');
+            });
+            btn.classList.add('active');
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const filterType = params.get('filter') || window.location.hash.substring(1);
+
+            if (filterType) {
+                const buttons = document.querySelectorAll('.filter-btn');
+                const btn = Array.from(buttons).find(b =>
+                    b.getAttribute('onclick')?.includes(`'${filterType}'`)
+                );
+                if (btn) {
+                    filterItems(filterType, btn);
+                } else {
+                    loadItem(); // fallback if button not found
+                }
+            } else {
+                loadItem();
+            }
+        });
+    </script>
+    </body>
+</html>
