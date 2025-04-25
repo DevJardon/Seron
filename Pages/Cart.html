@@ -18,7 +18,7 @@
   </script>
   
 <body>
-    <div class="nav-bar">
+    <div class="nav-bar scrolled">
         <div class="nav-bar-left">
             <img src="../Source/images/logo-only-black.svg" class="logo" alt="Seron Logo">
             <a href="../Home.html" class="brand-name">SERON</a>
@@ -90,7 +90,171 @@
             }
         });
     </script>
-
+<div class="cart-con">
+    <div class="cart-left">
+      <h1>Shopping Cart</h1>
+      
+      <div class="cart-items-container">
+        <!-- Cart items will be here -->
+        <div class="cart-item">
+          <img src="../Source/Images/Mens/Men_Hoodies_1_Hover.avif" alt="Product Image">
+          <div class="product-info">
+            <h3 class="cart-prod-type">Hoodies & Sweater</h3>
+            <h2 class="cart-prod-name">Loose Fit Zip Hoodie</h2>
+          </div>
+          <div class="quantity-control">
+            <button class="qty-btn minus">-</button>
+            <input type="number" min="1" value="1" readonly>
+            <button class="qty-btn plus">+</button>
+          </div>
+          <p class="cart-price" data-price="1199.00">PHP 1199.00</p>
+          <button class="delete-btn">✕</button>
+        </div>
+        <div class="cart-item">
+            <img src="../Source/Images/Mens/Men_Shorts_2_Hover.avif" alt="Product Image">
+            <div class="product-info">
+              <h3 class="cart-prod-type">Shorts</h3>
+              <h2 class="cart-prod-name">Regular-Fit Cargo Shorts</h2>
+            </div>
+            <div class="quantity-control">
+              <button class="qty-btn minus">-</button>
+              <input type="number" min="1" value="1" readonly>
+              <button class="qty-btn plus">+</button>
+            </div>
+            <p class="cart-price" data-price="659.00">PHP 659.00</p>
+            <button class="delete-btn">✕</button>
+        </div>
+        <div class="cart-item">
+            <img src="../Source/Images/Mens/Men_Jeans_1_Hover.avif" alt="Product Image">
+            <div class="product-info">
+              <h3 class="cart-prod-type">Jeans</h3>
+              <h2 class="cart-prod-name">Super Baggy Jeans</h2>
+            </div>
+            <div class="quantity-control">
+              <button class="qty-btn minus">-</button>
+              <input type="number" min="1" value="1" readonly>
+              <button class="qty-btn plus">+</button>
+            </div>
+            <p class="cart-price" data-price="1199.00">PHP 1,199.00</p>
+            <button class="delete-btn">✕</button>
+        </div>
+        <!-- Add more items here -->
+      </div>
+  
+      <p class="no-products-msg" style="display:none;">No products listed</p>
+    </div>
+  
+    <div class="cart-right">
+      <div class="cart-summary">
+        <h3>Order Summary</h3>
+        <p>Total: <span class="total-price">PHP 3057.00</span></p>
+      </div>
+      
+      <div class="checkout">
+        <h3>Select Payment Method</h3>
+        <select class="payment-method">
+          <option value="paypal">PayPal</option>
+          <option value="gcash">GCash</option>
+          <option value="debit-card">Debit Card</option>
+          <option value="credit-card">Credit Card</option>
+          <!-- Add more payment methods as needed -->
+        </select>
+        <button class="checkout-btn">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const minusButtons = document.querySelectorAll('.qty-btn.minus');
+    const plusButtons = document.querySelectorAll('.qty-btn.plus');
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+    const cartItemsContainer = document.querySelector('.cart-items-container');
+    const noProductsMsg = document.querySelector('.no-products-msg');
+    const totalPriceElement = document.querySelector('.total-price');
+    const grandTotalElement = document.querySelector('.grand-total');
+  
+    function updatePrice(input, priceElement) {
+      const price = parseFloat(priceElement.dataset.price);
+      const quantity = parseInt(input.value);
+      const totalPrice = price * quantity;
+      priceElement.textContent = `PHP ${totalPrice.toFixed(2)}`;
+      updateTotalPrice();
+    }
+  
+    function increaseQuantity(event) {
+      const input = event.target.previousElementSibling;
+      let currentValue = parseInt(input.value);
+      input.value = currentValue + 1;
+      const priceElement = event.target.closest('.cart-item').querySelector('.cart-price');
+      updatePrice(input, priceElement);
+    }
+  
+    function decreaseQuantity(event) {
+      const input = event.target.nextElementSibling;
+      let currentValue = parseInt(input.value);
+      if (currentValue > 1) {
+        input.value = currentValue - 1;
+        const priceElement = event.target.closest('.cart-item').querySelector('.cart-price');
+        updatePrice(input, priceElement);
+      }
+    }
+  
+    function deleteProduct(event) {
+      const cartItem = event.target.closest('.cart-item');
+      const priceElement = cartItem.querySelector('.cart-price');
+      const quantity = parseInt(cartItem.querySelector('input').value);
+      const price = parseFloat(priceElement.dataset.price);
+      const totalProductPrice = price * quantity;
+  
+      // Remove the item from the cart
+      cartItem.remove();
+  
+      // Update the total price after removal
+      updateTotalPrice();
+      checkIfCartIsEmpty();
+    }
+  
+    function updateTotalPrice() {
+      let total = 0;
+      document.querySelectorAll('.cart-price').forEach(priceElement => {
+        const price = parseFloat(priceElement.dataset.price);
+        const quantity = parseInt(priceElement.previousElementSibling.querySelector('input').value);
+        total += price * quantity;
+      });
+      totalPriceElement.textContent = `PHP ${total.toFixed(2)}`;
+      const grandTotal = total + shippingCost;
+      grandTotalElement.textContent = `PHP ${grandTotal.toFixed(2)}`;
+    }
+  
+    function checkIfCartIsEmpty() {
+      if (cartItemsContainer.children.length === 0) {
+        noProductsMsg.style.display = 'block';
+      } else {
+        noProductsMsg.style.display = 'none';
+      }
+    }
+  
+    minusButtons.forEach(button => {
+      button.addEventListener('click', decreaseQuantity);
+    });
+  
+    plusButtons.forEach(button => {
+      button.addEventListener('click', increaseQuantity);
+    });
+  
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', deleteProduct);
+    });
+  
+    document.querySelector('.checkout-btn').addEventListener('click', function() {
+      const selectedPayment = document.querySelector('.payment-method').value;
+      alert(`Proceeding to checkout with ${selectedPayment} payment method.`);
+    });
+  
+    checkIfCartIsEmpty();
+  </script>
+  
+  <section class="footer"></section>
+      
 
 </body>
 </html>
